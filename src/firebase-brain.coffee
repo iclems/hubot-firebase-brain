@@ -59,7 +59,7 @@ module.exports = (robot) ->
   # As values change in Firebase load them into the local brain
   robot.firebaseBrain.on "value", (data)->
    robot.logger.debug "firebase-brain: Updating brain from FireBase"
-   robot.brain.mergeData = data.val()
+   robot.brain.mergeData data.val()
    robot.brain.save()
 
   # Flush brain to firebase on the 'save' event
