@@ -14,14 +14,14 @@ serviceAccount = require(process.env.FIREBASE_BRAIN_SERVICE_PATH);
 
 firebase = firebaseAdmin.initializeApp {
   credential: firebaseAdmin.credential.cert(serviceAccount),
-  databaseURL: process.env.FIREBASE_URL
+  databaseURL: process.env.FIREBASE_BRAIN_URL
 }, "hubot-firebase-brain"
 
 # Main export
 module.exports = (robot) ->
 
   # Do not load unless configured
-  return robot.logger.warning "firebase-brain: FIREBASE_URL not set. Not attempting to load FireBase brain." unless process.env.FIREBASE_URL?
+  return robot.logger.warning "firebase-brain: FIREBASE_BRAIN_URL not set. Not attempting to load FireBase brain." unless process.env.FIREBASE_BRAIN_URL?
 
   robot.logger.info "firebase-brain: Connecting to Firebase brain at #{process.env.FIREBASE_URL} "
 
