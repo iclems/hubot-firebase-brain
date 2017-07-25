@@ -13,7 +13,7 @@ firebaseAdmin = require "firebase-admin"
 serviceAccount = require(process.env.FIREBASE_BRAIN_SERVICE_PATH);
 
 firebase = firebaseAdmin.initializeApp {
-  credential: admin.credential.cert(serviceAccount),
+  credential: firebaseAdmin.credential.cert(serviceAccount),
   databaseURL: process.env.FIREBASE_URL
 }, "hubot-firebase-brain"
 
