@@ -24,8 +24,7 @@
     "hubot-scripts"
   ],
   "dependencies": {
-    "firebase": "^2.2.7",
-    "firebase-token-generator": "^2.0.0"
+    "firebase-admin": "^5.0.1",
   },
   "peerDependencies": {
     "hubot": "2.x"
