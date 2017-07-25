@@ -2,8 +2,9 @@
 #   A Hubot script to persist Hubot's brain using FireBase
 #
 # Configuration:
-#   FIREBASE_BRAIN_URL - eg https://your_firebase.firebaseio.com/hubot
+#   FIREBASE_BRAIN_URL - eg https://your_firebase.firebaseio.com
 #   FIREBASE_BRAIN_SERVICE_PATH - Service account key file path
+#   FIREBASE_BRAIN_PATH - child in the database
 #
 # Commands:
 #   None
@@ -23,13 +24,15 @@ module.exports = (robot) ->
   # Do not load unless configured
   return robot.logger.warning "firebase-brain: FIREBASE_BRAIN_URL not set. Not attempting to load FireBase brain." unless process.env.FIREBASE_BRAIN_URL?
 
-  robot.logger.info "firebase-brain: Connecting to Firebase brain at #{process.env.FIREBASE_URL} "
+  robot.logger.info "firebase-brain: Connecting to Firebase brain at #{process.env.FIREBASE_BRAIN_URL} "
 
   # Turn off autosave until Firebase connected successfully
   robot.brain.setAutoSave false
 
   # expose this reference to the Robot
   robot.firebaseBrain = firebase.database()
+  if process.env.FIREBASE_BRAIN_PATH
+    robot.firebaseBrain = robot.firebaseBrain.child(process.env.FIREBASE_BRAIN_PATH)
 
   # Load the initial persistant brain
   robot.firebaseBrain.once 'value', (data) ->
