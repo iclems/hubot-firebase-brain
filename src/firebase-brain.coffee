@@ -30,7 +30,7 @@ module.exports = (robot) ->
   robot.brain.setAutoSave false
 
   # expose this reference to the Robot
-  robot.firebaseBrain = firebase.database()
+  robot.firebaseBrain = firebase.database().ref()
   if process.env.FIREBASE_BRAIN_PATH
     robot.firebaseBrain = robot.firebaseBrain.child(process.env.FIREBASE_BRAIN_PATH)
 
